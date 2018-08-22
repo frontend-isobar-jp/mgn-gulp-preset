@@ -13,6 +13,8 @@ module.exports = (setting,watching,buildType) => {
 
     const bundle = (watching = false) => {
 
+        if( buildType ) watching = false;
+
         // コンパイル対象ファイルのディレクトリ名
         const srcDir = setting.src;
 
