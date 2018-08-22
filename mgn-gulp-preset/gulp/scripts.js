@@ -28,7 +28,7 @@ module.exports = (setting,watching,buildType) => {
             const browserifyOptions = {
                 // コンパイル対象となるファイル
                 entries: [srcDir + '/' + entryPoint],
-                transform: ['babelify'],
+                transform: [["babelify", { "presets": ["env"] }]],
                 debug: true,
                 //watchifyの差分ビルドを有効化
                 cache: {},
