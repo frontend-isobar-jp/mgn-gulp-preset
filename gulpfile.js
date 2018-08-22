@@ -13,7 +13,7 @@ const SETTING = {
             'fileName' :"mgn-gulp-preset",// Name of output file
             'version' :  "", // version of output file
             'from' : [
-                './download/**/*'
+                './mgn-gulp-preset/**/*'
             ],
             'to' : './' //output directry
         }
