@@ -2,6 +2,8 @@
 
 [↓ Download zip file](https://github.com/frontend-isobar-jp/mgn-gulp-preset/blob/master/mgn-gulp-preset.zip?raw=true)
 
+**ダウンロードしたファイルをプロジェクトルート直下に配置します。**
+
 ----
 
 # Gulp の設定に関して ( gulpfile.js )
