@@ -1,5 +1,5 @@
 {
-    "name": "template",
+    "name": "",
     "version": "",
     "description": "",
     "main": "",
@@ -29,5 +29,5 @@
         "build": "npx gulp build"
     },
     "author": "",
-    "license": "MIT"
+    "license": ""
 }

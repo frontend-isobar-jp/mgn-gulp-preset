@@ -9,15 +9,15 @@
 const SETTING = {
 
     'zip': [
-    {
-      'fileName' :"megane_download",// Name of output file
-      'version' :  "", // version of output file
-      'from' : [
-          './public/**/*',
-          './src/**/*'
-      ],
-      'to' : './' //output directry
-    }
+        {
+            'fileName' :"mgn-gulp-preset",// Name of output file
+            'version' :  "", // version of output file
+            'from' : [
+                './download/**/*'
+            ],
+            'to' : './' //output directry
+        }
+    ]
 
 }
 
@@ -51,8 +51,6 @@ gulp.task('zip', () => {
 **/
 
 const taskList = [
-
-    'zip',
-
+    'zip'
 ]
 gulp.task('default', taskList);
