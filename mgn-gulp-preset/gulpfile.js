@@ -73,34 +73,27 @@ const BrowserSync = require("./gulp/browser-sync");
 gulp.task('sass', () => {
     Sass(SETTING);
 });
+gulp.task('scripts', () => {
+    Scripts(SETTING);
+});
 
 gulp.task('serve', () => {
     BrowserSync(SETTING);
 });
 
 gulp.task('build', () => {
-
     Sass(SETTING,"prod");
-
-    SETTING.js.forEach( function(e,i,entryPoint) {
-
-        Scripts(SETTING.js[i],true,"prod");
-
-    });
+    Scripts(SETTING,"prod");
 });
 
 gulp.task('watch', () => {
 
-    SETTING.sass[0].path.forEach( function(e,i,entryPoint) {
-
+    SETTING.sass[0].path.forEach( function(e,i) {
         gulp.watch(SETTING.sass[0].path[i].src + '*.scss', ['sass']);
-
     });
 
-    SETTING.js.forEach( function(e,i,entryPoint) {
-
-        Scripts(SETTING.js[i],true);
-
+    SETTING.js.forEach( function(e,i) {
+        gulp.watch(SETTING.js[i].src + '*.js', ['scripts']);
     });
 
 });
@@ -117,8 +110,9 @@ gulp.task('watch', () => {
 const taskList = [
 
     'watch',
-    // 'sass', // gulp-sass
-    // 'serve' // browser-sync
+    // 'scripts',
+    // 'sass',
+    'serve' // browser-sync
 
 ]
 gulp.task('default', taskList);

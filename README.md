@@ -5,6 +5,11 @@
 **ダウンロードしたファイルをプロジェクトルート直下に配置します。**
 
 ----
+# npm install
+```
+npm i -D babel-core babel-preset-env babelify browser-sync browserify gulp gulp-autoprefixer gulp-changed gulp-if gulp-load-plugins gulp-plumber gulp-sass gulp-sourcemaps gulp-uglify vinyl-buffer vinyl-source-stream
+```
+----
 
 # Gulp の設定に関して ( gulpfile.js )
 - 最初に「# Initial」の項目で rootPath を設定してください。
@@ -27,13 +32,13 @@ css、jsファイルともにsouceMapが有効なった状態で出力されま�
 **!! npm v5.2.0 以上 !!**
 
 ```
-$ npm start
+$ npx gulp
 ```
 
 ## 本番用（production）ビルド
 css、jsファイルともにsouceMapが無効なった状態で出力されます。
 ```
-$ npm run build
+$ npx gulp build
 ```
 
 ___
@@ -123,8 +128,8 @@ const setting = {
 
     'js': [
         {
-            'src': './src/js',
-            'dist': ROOT_PATH + 'assets/js',
+            'src': './src/js/',
+            'dist': ROOT_PATH + 'assets/js/',
             'fileName': [ // main file
                 'main.js'
             ]
@@ -143,19 +148,27 @@ const Scripts = require("./gulp/scripts");
 ### 3. task定義
 
 ```
+gulp.task('scripts', () => {
+    Scripts(SETTING);
+});
 gulp.task('watch', () => {
 
-    SETTING.js.forEach( function(e,i,entryPoint) {
-
-        Scripts(SETTING.js[i],true);
-
+    SETTING.js.forEach( function(e,i) {
+        gulp.watch(SETTING.js[i].src + '*.js', ['scripts']);
     });
 
 });
 ```
 
 ### 4. Default Task
-Scripts は 'watch' 起動時に実行されます。
+（ taskListへ記述することで、default起動するようになります。 ）
+```
+const taskList = [
+
+    'scripts'
+
+]
+```
 
 ___
 
