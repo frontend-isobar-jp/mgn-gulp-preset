@@ -5,6 +5,7 @@ const buffer = require("vinyl-buffer");
 const source = require("vinyl-source-stream");
 const gulpIf = require("gulp-if");
 const gulpLoadPlugins = require("gulp-load-plugins");
+const uglify = require("gulp-uglify-es").default;
 
 const $ = gulpLoadPlugins();
 
@@ -38,7 +39,7 @@ module.exports = (setting,buildType) => {
             .pipe(source(entryPoint))
             .pipe(buffer())
             .pipe($.sourcemaps.init({loadMaps: true}))
-            .pipe($.uglify())
+            .pipe(uglify())
             .pipe( gulpIf( !buildType, $.sourcemaps.write()) )
             .pipe(gulp.dest(distDir));
         });

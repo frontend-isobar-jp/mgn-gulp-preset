@@ -7,7 +7,7 @@
 ----
 # npm install
 ```
-npm i -D babel-core babel-preset-env babelify browser-sync browserify gulp gulp-autoprefixer gulp-if gulp-load-plugins gulp-plumber gulp-sass gulp-sourcemaps gulp-uglify vinyl-buffer vinyl-source-stream
+npm i -D babel-core babel-preset-env babelify browser-sync browserify gulp gulp-autoprefixer gulp-if gulp-load-plugins gulp-plumber gulp-sass gulp-sourcemaps gulp-uglify-es vinyl-buffer vinyl-source-stream
 ```
 ----
 
