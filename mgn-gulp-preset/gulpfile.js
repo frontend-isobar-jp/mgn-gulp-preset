@@ -93,7 +93,7 @@ gulp.task('watch', () => {
     });
 
     SETTING.js.forEach( function(e,i) {
-        gulp.watch(SETTING.js[i].src + '*.js', ['scripts']);
+        gulp.watch(SETTING.js[i].src + '**/*.js', ['scripts']);
     });
 
 });
