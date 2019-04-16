@@ -70,32 +70,35 @@ const BrowserSync = require("./gulp/browser-sync");
 **
 **/
 
-gulp.task('sass', () => {
+gulp.task('sass', (done) => {
     Sass(SETTING);
+    done();
 });
-gulp.task('scripts', () => {
+gulp.task('scripts', (done) => {
     Scripts(SETTING);
+    done();
 });
 
-gulp.task('serve', () => {
+gulp.task('serve', (done) => {
     BrowserSync(SETTING);
+    done();
 });
 
-gulp.task('build', () => {
+gulp.task('build', (done) => {
     Sass(SETTING,"prod");
     Scripts(SETTING,"prod");
+    done();
 });
 
 gulp.task('watch', () => {
 
     SETTING.sass[0].path.forEach( function(e,i) {
-        gulp.watch(SETTING.sass[0].path[i].src + '*.scss', ['sass']);
+        gulp.watch(SETTING.sass[0].path[i].src + '*.scss', gulp.task("sass"));
     });
 
     SETTING.js.forEach( function(e,i) {
-        gulp.watch(SETTING.js[i].src + '**/*.js', ['scripts']);
+        gulp.watch(SETTING.js[i].src + '**/*.js', gulp.task("scripts"));
     });
-
 });
 
 
@@ -107,12 +110,19 @@ gulp.task('watch', () => {
 **
 **/
 
-const taskList = [
+// const taskList = [
 
-    'watch',
+    // 'watch',
     // 'scripts',
     // 'sass',
-    'serve' // browser-sync
+    // 'serve' // browser-sync
 
-]
-gulp.task('default', taskList);
+// ]
+
+gulp.task(
+    "default",
+    gulp.series(gulp.parallel(
+        "watch",
+        "serve"
+    ))
+);
