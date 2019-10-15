@@ -25,7 +25,6 @@ const SETTING = {
 
     'sass': [
         {
-            'browser': ['last 2 versions'], // autoprefix version
             'outputStyle': 'compressed',// compile style
             'path': [
                 {
