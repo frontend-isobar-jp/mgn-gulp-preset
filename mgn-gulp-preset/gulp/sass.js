@@ -25,8 +25,7 @@ module.exports = (setting,buildType) => {
         }).on('error', $.sass.logError))
 
         .pipe($.autoprefixer({
-            cascade: false,
-            grid: false
+            cascade: false
         }))
 
         .pipe( gulpIf( !buildType, $.sourcemaps.write()) )

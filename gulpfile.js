@@ -37,8 +37,9 @@ const Zip = require("./gulp/zip");
 ** Task
 **
 **/
-gulp.task('zip', () => {
+gulp.task('zip', (done) => {
     Zip(SETTING);
+    done();
 });
 
 
@@ -50,7 +51,9 @@ gulp.task('zip', () => {
 **
 **/
 
-const taskList = [
-    'zip'
-]
-gulp.task('default', taskList);
+gulp.task(
+    "default",
+    gulp.series(gulp.parallel(
+        "zip"
+    ))
+);

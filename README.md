@@ -88,15 +88,16 @@ const Sass = require("./gulp/sass");
 
 ### 3. Task
 ```
-gulp.task('sass', () => {
+gulp.task('sass', (done) => {
     Sass(SETTING);
+    done();
 });
 
 gulp.task('watch', () => {
 
-    SETTING.sass[0].path.forEach( function(e,i,entryPoint) {
+    SETTING.sass[0].path.forEach( function(e,i) {
 
-        gulp.watch(SETTING.sass[0].path[i].src + '*.scss', ['sass']);
+        gulp.watch(SETTING.sass[0].path[i].src + '*.scss', gulp.task("sass"));
 
     });
 
@@ -106,11 +107,12 @@ gulp.task('watch', () => {
 ### 4. Default Task
 （ taskListへ記述することで、default起動するようになります。 ）
 ```
-const taskList = [
-
-    'sass'
-
-]
+gulp.task(
+    "default",
+    gulp.series(gulp.parallel(
+        "sass"
+    ))
+);
 ```
 
 ___
@@ -148,13 +150,14 @@ const Scripts = require("./gulp/scripts");
 ### 3. task定義
 
 ```
-gulp.task('scripts', () => {
+gulp.task('scripts', (done) => {
     Scripts(SETTING);
+    done();
 });
 gulp.task('watch', () => {
 
     SETTING.js.forEach( function(e,i) {
-        gulp.watch(SETTING.js[i].src + '*.js', ['scripts']);
+        gulp.watch(SETTING.js[i].src + '**/*.js', gulp.task("scripts"));
     });
 
 });
@@ -163,11 +166,12 @@ gulp.task('watch', () => {
 ### 4. Default Task
 （ taskListへ記述することで、default起動するようになります。 ）
 ```
-const taskList = [
-
-    'scripts'
-
-]
+gulp.task(
+    "default",
+    gulp.series(gulp.parallel(
+        "scripts"
+    ))
+);
 ```
 
 ___
@@ -207,9 +211,10 @@ const BrowserSync = require("./gulp/browser-sync");
 ### 3. task定義
 
 ```
-gulp.task('serve', () => {
+gulp.task('serve', (done) => {
 
     BrowserSync(SETTING);
+    done();
 
 });
 ```
@@ -219,9 +224,11 @@ gulp.task('serve', () => {
 （ taskListへ記述することで、default起動するようになります。 ）
 
 ```
-const taskList = [
-
-    'serve'
-
-]
+gulp.task(
+    "default",
+    gulp.series(gulp.parallel(
+        "watch",
+        "serve"
+    ))
+);
 ```
